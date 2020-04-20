@@ -1,0 +1,53 @@
+:root {
+    font-size: 1.5rem;
+    font-family: Arial;
+    text-align: center;
+}
+
+header {
+    width: 100vw;
+}
+header ul { display: flex; justify-content: space-evenly; }
+header ul li {    
+    list-style: none;
+}
+
+fieldset {
+    margin-bottom: 1rem;
+}
+
+input:not([type="checkbox"]):not([type="radio"]), select, button, textarea {
+    width: 100%;
+    margin-bottom: 1rem;
+    font-size: 0.8rem;
+    border: 1px solid silver;
+    border-radius: 0.2rem;
+    padding: 0.2rem;
+}
+button[type="submit"] {
+    margin-top: 1rem;
+    background-color: #3333ee;
+    color: white;
+}
+
+label {
+    text-align: left;
+}
+
+form {
+    max-width: 500px;
+    margin: auto;
+}
+
+@media (min-width: 600px) {
+    form {
+        max-width: 700px;
+    }
+    .parent-split {
+        display: flex;
+        justify-content: space-between;
+    }
+    button {
+        width: 3rem;
+    }
+}

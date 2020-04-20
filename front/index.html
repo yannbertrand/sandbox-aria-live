@@ -1,0 +1,92 @@
+<html>
+    <head>
+        <title>aria-live playground</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="./styles.css">
+    </head>
+
+    <body>
+        <header>
+            <nav>
+                <ul>
+                    <li>Flights</li>
+                    <li>Hotels</li>
+                    <li>Rental Cars</li>
+                </ul>
+            </nav>
+        </header>
+
+        <form id="roadtrip-form">
+            <h1>Where ya headed, mate?</h1>
+
+            <fieldset>
+                <label>
+                    <input type="radio" name="type" value="one-way" checked>
+                    One Way
+                </label>
+                <label>
+                    <input type="radio" name="type" value="round-trip">
+                    Round trip
+                </label>
+            </fieldset>
+
+            <label>
+                Full name
+                <input type="text" name="fullname">
+            </label>
+
+            <label>
+                Address
+                <textarea name="address"></textarea>
+            </label>
+
+            <div class="parent-split">
+                <label class="split">
+                    Departure
+                    <select id="departure" name="departure">
+                        <option value="brest">Brest</option>
+                        <option value="nantes">Nantes</option>
+                        <option value="paris">Paris</option>
+                    </select>
+                </label>
+
+                <label class="split">
+                    Arrival
+                    <select id="arrival" name="arrival">
+                        <option value="brest">Brest</option>
+                        <option value="nantes">Nantes</option>
+                        <option value="paris">Paris</option>
+                    </select>
+                </label>
+
+                <label class="split">
+                    Departure date
+                    <input type="date" name="departureDate">
+                </label>
+
+                <label class="split">
+                    Return date
+                    <input type="date" name="returnDate">
+                </label>
+            </div>
+
+            <div class="parent-split">
+                <label>
+                    Preferred seat type
+                    <select id="seat-type" name="seatType">
+                        <option value="none">No preference</option>
+                        <option value="aisle">Aisle seat</option>
+                        <option value="window">Window seat</option>
+                    </select>
+                </label>
+
+                <label>
+                    <input type="checkbox" name="promotionalOffers">
+                    Receive promotional offers?
+                </label>
+
+                <button type="submit">Search</button>
+            </div>
+        </form>
+    </body>
+</html>
