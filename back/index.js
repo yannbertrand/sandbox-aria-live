@@ -24,13 +24,15 @@ const trips = [{
 }]
 
 const server = http.createServer((req, res) => {
-    if (url.parse(req.url).pathname === '/error') {
-        res.writeHead(404, {'Access-Control-Allow-Origin': '*'})
-        return res.end('Page not found')
-    }
-    
-    res.writeHead(200, {'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'})
-    res.end(JSON.stringify(trips))
+    setTimeout(() => {
+        if (url.parse(req.url).pathname === '/error') {
+            res.writeHead(404, {'Access-Control-Allow-Origin': '*'})
+            return res.end('Page not found')
+        }
+
+        res.writeHead(200, {'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'})
+        res.end(JSON.stringify(trips))
+    }, 1000)
 })
 
 server.listen(8080)
