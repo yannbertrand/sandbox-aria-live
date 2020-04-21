@@ -1,4 +1,5 @@
 const form = document.forms.roadtripForm
+const trips = document.getElementById('trips')
 const checkboxGenerate404 = form.querySelector('[name="generateError"]')
 
 form.onsubmit = async (event) => {
@@ -21,28 +22,7 @@ form.onsubmit = async (event) => {
     }
 }
 
-function fetchServer(error = false) {
-    return new Promise((resolve, reject) => {
-        const url = 'http://localhost:8080' + (error ? '/error' : '')
-        fetch(url)
-            .then(response => response.ok ? response.json() : response.text())
-            .then(resolve)
-            .catch(reject)
-    })
-}
-
-const trips = document.getElementById('trips')
-
-function resetList() {
-    trips.innerHTML = ''
-}
-
-function displayLoaderList() {
-    const title = document.createElement('h2')
-    title.textContent = 'Loading results...'
-    trips.appendChild(title)
-}
-
+// ToDo use aria-live polite to inform deficient users
 function displayList(results) {
     resetList()
 
@@ -57,14 +37,17 @@ function displayList(results) {
     }
 }
 
+// ToDo use aria-live polite to inform deficient users
 function displayEmptyList() {
     resetList()
+
     const title = document.createElement('h2')
     title.textContent = 'No trips corresponding'
     title.prepend(compileEmoji('0️⃣'))
     trips.appendChild(title)
 }
 
+// ToDo use aria-live assertive to inform deficient users
 function displayError() {
     resetList()
 
@@ -78,10 +61,34 @@ function displayError() {
     trips.appendChild(subtitle)
 }
 
-function compileEmoji(content) {
+// ToDo try aria-label to describe the emoji
+// ToDo use aria-hidden to hide useless emoji
+function compileEmoji(content, label = '') {
     const emoji = document.createElement('span')
     emoji.textContent = content
     return emoji
+}
+
+// ----------------------------------------------
+
+function fetchServer(error = false) {
+    return new Promise((resolve, reject) => {
+        const url = 'http://localhost:8080' + (error ? '/error' : '')
+        fetch(url)
+            .then(response => response.ok ? response.json() : response.text())
+            .then(resolve)
+            .catch(reject)
+    })
+}
+
+function resetList() {
+    trips.innerHTML = ''
+}
+
+function displayLoaderList() {
+    const title = document.createElement('h2')
+    title.textContent = 'Loading results...'
+    trips.appendChild(title)
 }
 
 function compileItem({ departure, arrival, departureDate, returnDate }) {
