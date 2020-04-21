@@ -1,23 +1,25 @@
 const form = document.forms[0]
 
-form.onsubmit = (event) => {
+form.onsubmit = async (event) => {
     event.preventDefault()
 
-    fetchSuccess()
+    try {
+        const result = await fetchServer()
+        console.log(result)
+    } catch (error) {
+        console.log('An error occured while fetching the server')
+        console.log(error)
+    }
 }
 
-function fetchSuccess() {
-    fetch('http://localhost:8080')
-        .then(response => response.json())
-        .then(console.log)
-        .catch(error => console.error(error))
-}
-
-function fetchError() {
-    fetch('http://localhost:8080/error')
-        .then(response => response.text())
-        .then(console.log)
-        .catch(error => console.error(error))
+function fetchServer(error = false) {
+    return new Promise((resolve, reject) => {
+        const url = 'http://localhost:8080' + (error ? '/error' : '')
+        fetch(url)
+            .then(response => response.ok ? response.json() : response.text())
+            .then(resolve)
+            .catch(reject)
+    })
 }
 
 const trips = document.getElementById('trips')
