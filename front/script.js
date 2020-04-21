@@ -45,8 +45,11 @@ function displayLoaderList() {
 
 function displayList(results) {
     resetList()
+
     const title = document.createElement('h2')
     title.textContent = `Found ${results.length} possible trips`
+    title.prepend(compileEmoji('✅'))
+
     trips.appendChild(title)
 
     for (const result of results) {
@@ -58,6 +61,7 @@ function displayEmptyList() {
     resetList()
     const title = document.createElement('h2')
     title.textContent = 'No trips corresponding'
+    title.prepend(compileEmoji('0️⃣'))
     trips.appendChild(title)
 }
 
@@ -66,11 +70,18 @@ function displayError() {
 
     const title = document.createElement('h2')
     title.textContent = 'The server is unavailable'
+    title.prepend(compileEmoji('❌'))
     trips.appendChild(title)
 
     const subtitle = document.createElement('h3')
     subtitle.textContent = 'Please try again in a few sec'
     trips.appendChild(subtitle)
+}
+
+function compileEmoji(content) {
+    const emoji = document.createElement('span')
+    emoji.textContent = content
+    return emoji
 }
 
 function compileItem({ departure, arrival, departureDate, returnDate }) {
