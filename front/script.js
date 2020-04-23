@@ -28,7 +28,7 @@ function displayList(results) {
 
     const title = document.createElement('h2')
     title.textContent = `Found ${results.length} possible trips`
-    title.prepend(compileEmoji('✅'))
+    title.prepend(compileEmoji('✅', 'Recherche valide'))
 
     trips.appendChild(title)
 
@@ -65,6 +65,7 @@ function displayError() {
 // ToDo use aria-hidden to hide useless emoji
 function compileEmoji(content, label = '') {
     const emoji = document.createElement('span')
+    if (label) emoji.setAttribute('aria-label', label)
     emoji.textContent = content
     return emoji
 }
