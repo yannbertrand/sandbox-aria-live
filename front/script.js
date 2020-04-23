@@ -29,7 +29,7 @@ function displayList(results) {
     const title = document.createElement('h2')
     title.textContent = `Found ${results.length} possible trips`
     title.setAttribute('tabindex', 0)
-    title.prepend(compileEmoji('✅', 'Recherche valide'))
+    title.prepend(compileEmoji('✅'))
 
     trips.appendChild(title)
 
@@ -64,9 +64,9 @@ function displayError() {
 
 // ToDo try aria-label to describe the emoji
 // ToDo use aria-hidden to hide useless emoji
-function compileEmoji(content, label = '') {
+function compileEmoji(content) {
     const emoji = document.createElement('span')
-    if (label) emoji.setAttribute('aria-label', label)
+    emoji.setAttribute('aria-hidden', true)
     emoji.textContent = content
     return emoji
 }
