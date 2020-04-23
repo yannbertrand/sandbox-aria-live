@@ -28,6 +28,7 @@ function displayList(results) {
 
     const title = document.createElement('h2')
     title.textContent = `Found ${results.length} possible trips`
+    title.setAttribute('tabindex', 0)
     title.prepend(compileEmoji('✅', 'Recherche valide'))
 
     trips.appendChild(title)
