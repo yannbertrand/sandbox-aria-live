@@ -28,6 +28,7 @@ function displayList(results) {
 
     const title = document.createElement('h2')
     title.textContent = `Found ${results.length} possible trips`
+    title.setAttribute('aria-live', 'polite')
     title.setAttribute('tabindex', 0)
     title.prepend(compileEmoji('✅'))
 
@@ -54,6 +55,7 @@ function displayError() {
 
     const title = document.createElement('h2')
     title.textContent = 'The server is unavailable'
+    title.setAttribute('aria-live', 'assertive')
     title.prepend(compileEmoji('❌'))
     trips.appendChild(title)
 
